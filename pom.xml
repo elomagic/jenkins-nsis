@@ -12,6 +12,9 @@
     <packaging>hpi</packaging>
     <name>Jenkins NSIS Plugin ${project.version}</name>
 
+    <description>Jenkins NSIS (Nullsoft Scriptable Install System) Plugin. Support automatically download of NSIS binaries</description>
+    <url>https://github.com/elomagic/jenkins-nsis</url>
+
     <licenses>
         <license>
             <name>MIT license</name>
@@ -27,6 +30,10 @@
             <timezone>+1</timezone>
         </developer>
     </developers>
+
+    <scm>
+        <connection>scm:git:https://github.com/elomagic/jenkins-nsis.git</connection>
+    </scm>
 
     <properties>
         <jenkins.plugin.name>NSIS Plugin</jenkins.plugin.name>
@@ -56,6 +63,7 @@
             </plugin>
         </plugins>
     </build>
+
     <repositories>
         <repository>
             <id>repo.jenkins-ci.org</id>
@@ -69,9 +77,4 @@
             <url>http://repo.jenkins-ci.org/public/</url>
         </pluginRepository>
     </pluginRepositories>
-
-    <scm>
-        <connection>scm:git:https://bitbucket.org/crambow/jenkins-nsis-plugin.git</connection>
-    </scm>
-
 </project>
