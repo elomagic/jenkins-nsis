@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -329,12 +330,17 @@ public class NSIS extends Builder {
 
             @Override
             public List<? extends Installable> getInstallables() throws IOException {
-                Installable i = new Installable();
-                i.id = "2.46";
-                i.name = "NSIS 2.46";
-                i.url = "http://switch.dl.sourceforge.net/project/nsis/NSIS%202/2.46/nsis-2.46.zip";
+                Installable i1 = new Installable();
+                i1.id = "2.46";
+                i1.name = "NSIS 2.46";
+                i1.url = "http://switch.dl.sourceforge.net/project/nsis/NSIS%202/2.46/nsis-2.46.zip";
 
-                return Collections.singletonList(i);
+                Installable i2 = new Installable();
+                i2.id = "3.0a2";
+                i2.name = "NSIS 3.0a2 Pre-release";
+                i2.url = "http://switch.dl.sourceforge.net/project/nsis/NSIS%203%20Pre-release/3.0a2/nsis-3.0a2.zip";
+
+                return Arrays.asList(i1, i2);
             }
         }
     }
