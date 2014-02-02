@@ -1,0 +1,27 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+    <!--
+      This jelly script is used for per-project configuration.
+
+      See global.jelly for a general discussion about jelly script.
+    -->
+
+    <j:if test="${!empty(descriptor.installations)}">
+        <f:entry title="${%NSIS Version}">
+            <select class="setting-input" name="nsis.name">
+                <option value="(Default)">(${%Default})</option>
+                <j:forEach var="inst" items="${descriptor.installations}">
+                    <f:option selected="${inst.name==instance.nsis.name}" value="${inst.name}">${inst.name}</f:option>
+                </j:forEach>
+            </select>
+        </f:entry>
+    </j:if>
+
+    <f:entry title="${%NSIS Script File Name}" help="/plugin/nsis-plugin/help-scriptName.html">
+        <f:textbox field="scriptName"/>
+    </f:entry>
+
+    <f:entry title="${%Options}" help="/plugin/nsis-plugin/help-options.html">
+        <f:textbox field="options"/>
+    </f:entry>
+</j:jelly>

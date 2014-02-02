@@ -1,0 +1,17 @@
+<div>
+    <ul>
+        <li><b>/LICENSE</b> displays a keen license page.</li>
+        <li>The <b>/V</b> switch followed by a number between 0 and 4 will set the verbosity of output accordingly. 0=no output, 1=errors only, 2=warnings and errors, 3=info, warnings, and errors, 4=all output.</li>
+        <li>The <b>/P</b> switch followed by a number between 0 and 5 will set the priority of the compiler process accordingly. 0=idle, 1=below normal, 2=normal (default), 3=above normal, 4=high, 5=realtime.</li>
+        <li>The <b>/O</b> switch followed by a filename tells the compiler to print its log to that file (instead of the screen)</li>
+        <li><b>/PAUSE</b> makes makensis pause before quitting, which is useful when executing directly from Windows.</li>
+        <li><b>/NOCONFIG</b> disables inclusion of nsisconf.nsh. Without this parameter, installer defaults are set from nsisconf.nsh.</li>
+        <li><b>/CMDHELP</b> prints basic usage information for command (if specified), or all commands (if command is not specified).</li>
+        <li><b>/HDRINFO</b> prints out information on what options were used to compile makensis was compiled with.</li>
+        <li><b>/NOCD</b> disables the current directory change to that of the .nsi file</li>
+        <li>Using the <b>/D</b> switch one or more times will add to symbols to the globally defined list (See !define).</li>
+        <li>Using the <b>/X</b> switch one or more times will execute the code you specify following it. Example: "/XAutoCloseWindow false"</li>
+        <li>Specifying a dash (-) for the script name will tell makensis to use the standard input as a source.</li>
+    </ul>
+    More information at <a href="http://nsis.sourceforge.net/Docs/Chapter3.html">http://nsis.sourceforge.net/Docs/Chapter3.html</a>.
+</div>
