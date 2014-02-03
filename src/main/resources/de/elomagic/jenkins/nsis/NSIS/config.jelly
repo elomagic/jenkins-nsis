@@ -48,4 +48,8 @@
     <f:entry title="${%Options}" help="/plugin/nsis-plugin/help-options.html">
         <f:textbox field="options"/>
     </f:entry>
+
+    <f:entry title="${%Working Directory}" help="/plugin/nsis-plugin/help-workingDirectory.html">
+        <f:textbox field="workingDirectory"/>
+    </f:entry>
 </j:jelly>

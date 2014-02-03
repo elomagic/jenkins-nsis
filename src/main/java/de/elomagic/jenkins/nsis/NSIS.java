@@ -37,6 +37,7 @@ import org.kohsuke.stapler.QueryParameter;
 import hudson.CopyOnWrite;
 import hudson.EnvVars;
 import hudson.Extension;
+import hudson.FilePath;
 import hudson.Launcher;
 import hudson.Util;
 import hudson.model.AbstractBuild;
@@ -69,12 +70,14 @@ public class NSIS extends Builder {
     private final String nsisName;
     private final String options;
     private final String scriptName;
+    private final String workingDirectory;
 
     @DataBoundConstructor
-    public NSIS(final String name, final String options, final String scriptName) {
+    public NSIS(final String name, final String options, final String scriptName, final String workingDirectory) {
         this.nsisName = name;
         this.options = options;
         this.scriptName = scriptName;
+        this.workingDirectory = workingDirectory;
     }
 
     @Override
@@ -112,12 +115,21 @@ public class NSIS extends Builder {
             args.add(name);
         }
 
+        FilePath wd = build.getModuleRoot();
+        if(workingDirectory != null) {
+            String s = Util.replaceMacro(workingDirectory, env);
+            s = Util.replaceMacro(s, build.getBuildVariables());
+            wd = new FilePath(new File(s));
+        }
+
         buildEnvVars(env, mi);
 
-        if(!launcher.isUnix()) {
-            args.prepend("cmd.exe", "/C");
-            args.add("&&", "exit", "%%ERRORLEVEL%%");
-        }
+//        if(!launcher.isUnix()) {
+//            args.prepend("cmd.exe", "/C");
+//            args.add("&&", "exit", "%%ERRORLEVEL%%");
+//        }
+        listener.getLogger().println("Workingpath=" + wd);
+        listener.getLogger().println("Env=" + env);
 
         try {
             int exitcode = launcher
@@ -125,7 +137,7 @@ public class NSIS extends Builder {
                     .cmds(args)
                     .envs(env)
                     .stdout(listener)
-                    .pwd(build.getModuleRoot())
+                    .pwd(wd)
                     .join();
 
             return exitcode == 0;
@@ -148,6 +160,10 @@ public class NSIS extends Builder {
         return scriptName;
     }
 
+    public String getWorkingDirectory() {
+        return workingDirectory;
+    }
+
     /**
      * Build up the environment variables toward the NSIS launch.
      *
@@ -160,8 +176,6 @@ public class NSIS extends Builder {
         if(mi != null) {
             mi.buildEnvVars(env);
         }
-        //env.put("NSISDIR", nsisFolder);
-        //env.put("NSISCONFDIR", nsisConfigurationFolder);
     }
 
     @Override
