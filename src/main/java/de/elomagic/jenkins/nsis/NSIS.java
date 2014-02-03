@@ -122,14 +122,14 @@ public class NSIS extends Builder {
             wd = new FilePath(new File(s));
         }
 
-        buildEnvVars(env, mi);
+        buildEnvVars(env, mi, listener);
 
 //        if(!launcher.isUnix()) {
 //            args.prepend("cmd.exe", "/C");
 //            args.add("&&", "exit", "%%ERRORLEVEL%%");
 //        }
         listener.getLogger().println("Workingpath=" + wd);
-        listener.getLogger().println("Env=" + env);
+        //listener.getLogger().println("Env=" + env);
 
         try {
             int exitcode = launcher
@@ -169,12 +169,17 @@ public class NSIS extends Builder {
      *
      * @param env
      * @param mi
+     * @param listener
      * @throws java.io.IOException
      * @throws java.lang.InterruptedException
      */
-    protected void buildEnvVars(final EnvVars env, final NSIS.NSISInstallation mi) throws IOException, InterruptedException {
+    protected void buildEnvVars(final EnvVars env, final NSIS.NSISInstallation mi, final BuildListener listener) throws IOException, InterruptedException {
         if(mi != null) {
             mi.buildEnvVars(env);
+
+            listener.getLogger().println("NSISDIR=" + mi.getHome());
+            env.put("NSISDIR", mi.getHome());
+            //env.put("NSISCONFDIR", nsisConfigurationFolder);
         }
     }
 
