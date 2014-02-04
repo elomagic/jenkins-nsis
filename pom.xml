@@ -33,6 +33,7 @@
 
     <scm>
         <connection>scm:git:https://github.com/elomagic/jenkins-nsis.git</connection>
+        <developerConnection>scm:git:https://github.com/elomagic/jenkins-nsis.git</developerConnection>
     </scm>
 
     <properties>
