@@ -12,7 +12,11 @@
     <packaging>hpi</packaging>
     <name>Jenkins NSIS Plugin ${project.version}</name>
 
-    <description>Jenkins NSIS (Nullsoft Scriptable Install System) Plugin. Support automatically download of NSIS binaries</description>
+    <description>
+        Jenkins NSIS (Nullsoft Scriptable Install System) Plugin.
+        Including support of automatically download of NSIS binaries. More information at https://github.com/elomagic/jenkins-nsis .
+    </description>
+
     <url>https://github.com/elomagic/jenkins-nsis</url>
 
     <licenses>
